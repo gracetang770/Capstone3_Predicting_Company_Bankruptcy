@@ -1,0 +1,47 @@
+1.) Model with Best Recall: 
+	sklearn.linear_model.LogisticRegression()
+
+Parameters:
+	{'smote__k_neighbors': 14, 
+	'pca__n_components': 50, 
+	'one_hot__kw_args': {'n_clusters': 12}, 
+	'lr__l1_ratio': 0.5, 
+	'lr__fit_intercept': True, 
+	'lr__C': 0.0027283333764867696}
+
+Performance Metrics:
+	Logistic Regression, Accuracy: 0.8739
+	Logistic Regression, F1-Score: 0.2989
+	Logistic Regression, Precision: 0.1821
+	Logistic Regression, Recall: 0.8333
+	Logistic Regression, Confusion Matrix without Normalization
+		[[1733  247]
+		 [  11   55]]
+	Logistic Regression, Confusion Matrix with Normalization
+		[[0.88 0.12]
+		 [0.17 0.83]]
+
+2.) Model with Best F1-Score: 
+	xgboost.XGBClassifier()
+
+Parameters:
+	{'xgb__n_estimators': 251, 
+	'xgb__min_child_weight': 1, 
+	'xgb__max_depth': 9, 
+	'xgb__learning_rate': 0.1, 
+	'xgb__gamma': 0.30000000000000004, 
+	'smote__k_neighbors': 5, 
+	'pca__n_components': 50, 
+	'one_hot__kw_args': {'n_clusters': 13}}
+
+Performance Metrics:
+	XG Boost, Accuracy: 0.9355
+	XG Boost, F1-Score: 0.3465
+	XG Boost, Precision: 0.2574
+	XG Boost, Recall: 0.5303
+	XG Boost, Confusion Matrix without Normalization
+		[[1879  101]
+		 [  31   35]]
+	XG Boost, Confusion Matrix with Normalization
+		[[0.95 0.05]
+		 [0.47 0.53]]
