@@ -6,36 +6,45 @@ Grace Tang
 March 2021
 
 ## Business Problem:
+
 Predicting company bankruptcy is critical in any financial institution, especially those involved in lending. For such companies, being able to predict whether a business will succeed or fail can result in successful business loans that grow companies, create jobs, and bolster the economy; or result in millions of dollars in losses.
 
-I am interested in developing a binary classification model to predict whether a business is at risk for bankruptcy, what factors contribute to its risk for bankruptcy, and by how much do those factors play a role. I will use a dataset from the Taiwan Economic Journal.
+In this project, I developed several binary classification models to predict whether a business is at risk for bankruptcy. The data used is from the Taiwan Economic Journal, ranging from years 1999-2009. The dataset contains approximately 3.2% bankruptcies and 96.8% non-bankruptcies, a highly imbalanced dataset. 
 
-Taiwan’s economy is a developed capitalist economy with most government firms being privatized. In that respect, there are many similarities between the US and Taiwanese economies. Furthermore, despite Taiwan’s population ranking 57th largest (equivalent to 0.31% of the total world population), it is the 7th-largest in Asia and 20th-largest in the world by purchasing power parity. Taiwan is also the most technologically advanced computer microchip maker in the world. It is definitely an economy worth studying, and may have many insights that carry over to our US economy.
+The model with the best recall (fewest false negatives) was Logistic Regression with a recall of 83.33%. 
 
-More broadly, the results of this project can be applied to not only finance, but any kind of classification problem with imbalanced data.
+The model with the best F1-Score (a more balanced precision/recall) was a XGBoost Classifier, with a F1-Score of 0.3465.
+
+
+## Results:
+|Model|Data Preprocessing|Accuracy|F1-Score|Precision|Recall|ROC AUC|P-R AUC|Runtime (s)|
+|:-:|:-:|--:|--:|--:|--:|--:|--:|--:|
+|Logistic Regression|No|0.9619|NAN|0.0000|0.0000|0.5887|0.0377|1.0776|
+|Logistic Regression|Yes|0.8739|0.2989|0.1821|0.8333|0.9252|0.3020|2.0035|
+|Random Forest Classifier|No|0.9707|0.2308|0.7500|0.1364|0.9497|0.4728|1.0542|
+|Random Forest Classifier|Yes|0.9355|0.2979|0.2295|0.4242|0.9203|0.2473|6.6547|
+|XG Boost Classifier|No|0.9697|0.3404|0.5714|0.2424|0.9472|0.4602|0.3819|
+|XG Boost Classifier|Yes|0.9355|0.3465|0.2574|0.5303|0.9086|0.2524|6.2850|
+
+|Model|Data Preprocessing|TP|FN|TN|FP|
+|:-:|:-:|--:|--:|--:|--:|
+|Logistic Regression|No|0|66|1968|12|
+|Logistic Regression|Yes|55|11|1733|247|
+|Random Forest Classifier|No|9|57|1977|3|
+|Random Forest Classifier|Yes|28|38|1886|94|
+|XG Boost Classifier|No|16|50|1968|12|
+|XG Boost Classifier|Yes|35|31|1879|101|
+
+* Data Preprocessing involves the following sequential transformations: 
+    * Scaling with np.log1p()
+    * Scaling with StandardScaler()
+    * Dimension reduction with PCA()
+    * Appending K-Means Cluster labels as additional features
+    * Oversampling the minority class with SMOTE
+
 
 ## Data: 
 “Company Bankruptcy Prediction: Bankruptcy data from the Taiwan Economic Journal for the years 1999–2009”: https://www.kaggle.com/fedesoriano/company-bankruptcy-prediction 
 
-## Anticipated Data Science Approach:
-Predicting company bankruptcy is a binary classification problem: either a company will go bankrupt or it will not. We can use various algorithms that are suitable for binary classification:
-* Logistic Regression
-* k-Nearest Neighbors
-* Decision Trees (Random Forest, XGBoost)
-* Support Vector Machine
-* Naive Bayes
-
-Since the data is highly imbalanced we will use methods to upsample the minority class (bankruptcies), and downsample the majority class (non-bankruptcies). Possible methods we can use are:
-* Synthetic Minority Oversampling TEchnique (SMOTE)
-* Borderline-SMOTE
-* Adaptive Synthetic Sampling (ADASYN)
-* Safe-Level-SMOTE
-* Majority Weighted Minority Oversampling TEchnique (MWMOTE)
-
-Not all of the listed methods will be used, and some hybrid methods may be implemented. The models will be evaluated on metrics such as accuracy, precision, recall, and ROC-AUC. Precision and Recall are especially important as our data is highly imbalanced.
-
-## Deliverables: 
-* All code I will develop (python code in the form of Jupyter notebooks).
-* A written final report.
-* A presentation slide deck.
-* Tableau dashboard, showing the results of the modeling and any informative trends or patterns found in the data.
+## 
+## 
